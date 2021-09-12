@@ -5,28 +5,21 @@
 
 **Set Up**
 
-`Step 0`
 ```bash
-~ $ sudo pip3 install pytz requests tweepy
-```
-
-`Step 1`
-```bash
-~ $ wget -O cptweet "https://raw.githubusercontent.com/tanujraghav/Contest-Notifier/master/cptweet.py"
-```
-
-`Step 2` 
-```bash
-~ $ vim cptweet
-```
-
-`Step 3`
-```bash
-~ $ chmod 755 cptweet && sudo mv cptweet /usr/bin/cptweet
+~ $ wget -O cpnotif-installer "https://raw.githubusercontent.com/tanujraghav/Contest-Notifier/master/install.sh"
+~ $ bash cpnotif-installer
 ```
 
 **Usage**
 
 ```bash
-~ $ cptweet
+~ $ cpnotif -h
+usage: cpnotif.py [-h] [-d DAYS]
+
+A personalized Twitter Bot that notifies about upcoming Competitive Programming Contests using CList API
+- by Tanuj Raghav, https://github.com/tanujraghav/Contest-Notifier
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -d DAYS     number of days to check for contests (default: 6)
 ```
