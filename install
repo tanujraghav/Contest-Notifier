@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+pip3 -q install tweepy requests pytz
+
+sudo mkdir /etc/Contest-Notifier/
+
+echo -e "\nContest Notifier Configuration\nsee: https://github.com/tanujraghav/Contest-Notifier\n"
+
+read -p "CLIST Username: " clist_username
+read -p "CLIST API Key: " clist_api_key
+read -p "CLIST Resources: " clist_resources
+read -p "CLIST Events: " clist_events
+
+echo -e "[CLIST]\nusername = $clist_username\napi_key = $clist_api_key\nresources = $clist_resources\nevents = $clist_events" > cpnotif.rc
+
+echo
+
+read -p "Time Zone Offset: " timezone_offset
+read -p "Time Zone Name: " timezone_name
+read -p "Time Zone Code: " timezone_code
+
+echo -e "[Time Zone]\noffset = $timezone_offset\nname = $timezone_name\ncode = $timezone_code" >> cpnotif.rc
+
+echo
+
+read -p "Twitter API Key: " twitter_api_key
+read -p "Twitter API Secret Key: " twitter_api_secret_key
+read -p "Twitter Access Token: " twitter_access_token
+read -p "Twitter Access Token Secret: " twitter_access_token_secret
+
+echo -e "[Twitter]\napi_key = $twitter_api_key\napi_secret_key = $twitter_api_secret_key\naccess_token = $twitter_access_token\naccess_token_secret = $twitter_access_token_secret" >> cpnotif.rc
+
+chmod 555 cpnotif.rc
+
+sudo mv cpnotif.rc /etc/Contest-Notifier/
+
+wget -q -O cpnotif "https://raw.githubusercontent.com/tanujraghav/Contest-Notifier/master/cpnotif"
+
+chmod 555 cpnotif
+
+sudo mv cpnotif /usr/bin/cpnotif
+
+cpnotif -h
